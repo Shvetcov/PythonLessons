@@ -1,0 +1,36 @@
+Известный художник решил написать новый шедевр. 
+После многих дней усердной работы он захотел исследовать свое творение. 
+Художник вспомнил, что картина писалась следующим образом: сначала был взят белый холст, 
+имеющий форму прямоугольника шириной w и высотой h. 
+Затем художник нарисовал на этом холсте n прямоугольников со сторонами, 
+параллельными сторонам холста и вершинами, расположенными в целочисленных координатах. 
+Помогите художнику определить площадь незакрашенной части холста.
+
+from random import randint
+w = randint(1,100)
+h = w = randint(1,100)
+n = randint(0,5000)
+with open('1.txt','w') as f:
+    print(w, h, file=f)
+    print(n, file=f)
+    for _ in range(n):
+        x1 = randint(1,w)
+        y1 = randint(1,h)
+        x2 = randint(x1,w)
+        y2 = randint(y1,h)
+        print(x1,y1,x2,y2, file=f)
+with open('1.txt') as f:
+    w,h = map(int,f.readline().split())
+    A = [[0]*w for _ in range(h)]
+    n = int(f.readline())
+
+    for s in f:
+        x1,y1,x2,y2 = map(int,s.split())
+        for i in range(y1-1,y2):
+            for j in range(x1-1,x2):
+                A[i][j]=1
+sm=0
+for a in A:
+    sm+=sum(a)
+n0 = w*h-sm
+print(n0)
