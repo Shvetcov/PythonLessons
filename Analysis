@@ -1,0 +1,19 @@
+import networkx
+from networkx import *
+import os
+import pylab as plt
+
+os.getcwd()
+g = read_edgelist("as20000102.txt", create_using=nx.DiGraph())
+print(g.number_of_nodes())
+print(g.number_of_edges())
+list1 = g.degree()
+
+max = 150
+kol = 0
+
+for i in list1:
+    if i[1] >= max:
+        kol +=1
+        print(i)
+print(kol)
