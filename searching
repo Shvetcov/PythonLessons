@@ -1,0 +1,26 @@
+import networkx
+from networkx import *
+from networkx import nx
+import os
+import matplotlib.pyplot as plt
+from graphviz import Graph
+
+os.getcwd()
+g = read_edgelist("as20000102.txt", create_using=nx.Graph())
+nod = g.number_of_nodes()
+edg = g.number_of_edges()
+list1 = g.degree()
+
+nod1 = g.nodes()
+
+#nx.draw(g)
+#plt.show()
+k = 0
+for i in nod1:
+    for j in nod1:
+        list2 = nx.dijkstra_path(g, i, j)
+        if len(list2) >= 6:
+            print(nx.dijkstra_path(g, i, j))
+            k += 1
+        if k > 10:
+            break
