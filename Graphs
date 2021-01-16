@@ -1,0 +1,10 @@
+nod, v = list(map(int,input().split()))
+
+abj = [[0 for i in range(nod)] for j in range(nod)]
+for x in range(v):
+    n, k = list(map(int,input().split()))
+    abj[n-1][k-1] = 1
+    abj[k-1][n-1] = 1
+print(abj)
+for line in abj:
+    print(sum(line))
