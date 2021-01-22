@@ -134,7 +134,7 @@ class Game:
         self.someone_won()
     def game_invitation(self):
         first_turn = input("Who start the game (type O or X): ").upper()
-        while first_turn != '   O' and first_turn != 'X':
+        while first_turn != 'O' and first_turn != 'X':
             os.system("cls")
             print("Please, pay attention")
             first_turn = input("Who start the game (type O or X): ").upper()
