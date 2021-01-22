@@ -1,33 +1,22 @@
 import os
-
+EMPTY_CELL = '.'
 class Turn:
-
     turn_dic = {"O": "red", "X":"blue"}
-
     def __init__(self, turn = "O"):
-        self.__state = self.turn_dic[turn]
-
+        self.__state = turn
     def next_turn(self):
-        if self.__state == self.turn_dic["O"]:
-            print("Next turn is: blue")
-            self.__state = self.turn_dic["X"]
+        if self.__state == 'O':
+            self.__state = 'X'
         else:
-            print("Next turn is: red")
-            self.__state = self.turn_dic["O"]
-
+            self.__state = 'O'
     def cur_turn(self):
         return self.__state
-
 class Cell:
-
-    __empty_cell = "_"
-
-    def __init__(self, state = __empty_cell):
+    global EMPTY_CELL
+    def __init__(self, state = EMPTY_CELL):
         self.__state = state
-
     def is_empty(self):
-        return self.__state == self.__empty_cell
-
+        return self.__state == EMPTY_CELL
     def set(self, state):
         if self.is_empty():
             self.__state = state
@@ -37,9 +26,7 @@ class Cell:
 
     def state(self):
         return self.__state
-
 class Field:
-
     def __init__(self, x, y):
         self.__x = x
         self.__y = y
@@ -50,7 +37,6 @@ class Field:
                 cell = Cell()
                 arr.append(cell)
             self.__cells.append(arr)
-
     def show(self):
         os.system('cls')
         for x in range(0, self.__x):
@@ -58,13 +44,10 @@ class Field:
             for y in range(0, self.__y):
                 row += self.__cells[x][y].state()
             print(row)
-
     def get_cell(self, x, y):
-        return self.__cells[x, y]
-
+        return self.__cells[x][y]
     def set_cell(self, x, y, turn):
         return self.__cells[x][y].set(turn)
-
 class Game:
     global EMPTY_CELL
     def __init__(self):
